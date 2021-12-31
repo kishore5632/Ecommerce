@@ -1,0 +1,8 @@
+{% block content %}
+
+{% if user is authenticated  %}
+
+   <a href="{% url 'index' %}">{{ user.username }}</a>
+
+{% endif %}
+{% endblock %}

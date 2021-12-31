@@ -1,0 +1,15 @@
+{% load static %}
+
+{% block content %}
+{% if post %}
+<h2>This is the results of your search</h2>
+{% for post in post %}
+    <p>Click below</p>
+    <a href="{% url 'product' %}" >{{ post.title}}</a>
+    <br />
+{% endfor %}
+{% else %}
+<p style="font-size: 3rem;">Currently These Topic is Not Available</p>
+{% endif %}
+
+{% endblock %}
