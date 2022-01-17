@@ -1,1 +1,1 @@
-Ecommerce site using Django
+Ecommerce site using Django and Django Restframework
