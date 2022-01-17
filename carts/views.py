@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from django.db.models import Min,Max
-
+from django.core.paginator import Paginator,EmptyPage
 
 def index(request):
     product=Product.objects.filter(category_id = 1 ).order_by('-timestamp')[:6]
@@ -59,19 +59,22 @@ def blog_archives(request):
     context = {'posts':posts,'late':latest}
     return render(request,"blog-archive.html",context)
 
-def blog_single(request,slug):
-    posts = Poster.objects.filter(slug=slug)
-    nextpost = Poster.objects.filter().order_by('slug').first()
-    prevpost = Poster.objects.filter().order_by('slug').last()    
+def blog_single(request,id):
+    posts = Poster.objects.filter(id=id)
+    nextpost = Poster.objects.filter().order_by('id').first()
+    prevpost = Poster.objects.filter().order_by('id').last()    
     
-    post = Comment.objects.all()
+    post = Comment.objects.filter(post_id=id)
+
     if request.method == 'POST':
-        N = request.POST["name"]
+        n = request.POST["name"]
         em = request.POST["email"]
         com = request.POST["comment"]
-        cs = Comment(Name=N,email=em,content=com)
+        cs = Comment(Name=n,email=em,content=com)
+        cs.post = Poster.objects.filter(id=id).first()
         cs.save()
-        return HttpResponse('your saved successfully')  
+        messages.success(request,"Thanks For Your comment") 
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
           
     context = {'posts': posts,'nextpost':nextpost,'prevpost':prevpost,'post':post}
     return render(request,'blog-single.html',context)
@@ -108,7 +111,6 @@ def cart_detail(request,total=0,counter=0):
     cart_item =cart_items.objects.filter(cart=cart,active=True)
     for  cart in cart_item:
         total =total + (cart.product.price * cart.quantity)
-        print(total)
         counter += cart.quantity
 
    except ObjectDoesNotExist:
@@ -155,11 +157,18 @@ def checkout(request,total=0,counter=0):
 def product(request):
     try:
         product=Product.objects.all()
+        paginator = Paginator(product, 5) # Show 5 contacts per page.
+        page_number = request.GET.get('page',1)
+        try:            
+            page_obj = paginator.page(page_number)
+        except EmptyPage:
+            page_obj = paginator.page(1)
+
     except:
         cart, created  = Cart.objects.get_or_create(user=request.user,complete=True)
         product = Wishlist.objects.filter(cart=cart)
    
-    context = {'pros': product}
+    context = {'pros': page_obj}
     return render(request,'product.html',context)
 
 

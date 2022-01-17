@@ -395,9 +395,8 @@
                             </figcaption>
                           </figure>                         
                           <div class="aa-product-hvr-content">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
-                            <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                          
+                            <a href="{% url 'wishlist' post.id  %}" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                 
                           </div>
                           <!-- product badge -->
                           <span class="aa-badge aa-sale" href="#">{{ post.badge }}</span>
@@ -410,7 +409,7 @@
                 <div class="tab-pane fade" id="featured">
                  <ul class="aa-product-catg aa-featured-slider">
                     <!-- start single product item -->
-                    {% for post in fes %}
+                    <!-- {% for post in fes %}
                     <li>
                       <figure>
                         <a class="aa-product-img" href="#"><img src="{{ post.thumbnail.url }}" alt="polo shirt img"></a>
@@ -421,11 +420,9 @@
                         </figcaption>
                       </figure>                         
                       <div class="aa-product-hvr-content">
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
-                        <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                          
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                       
                       </div>
-                      <!-- product badge -->
+                      product badge
                       <span class="aa-badge aa-sale" href="#">{{ post.badge }}</span>
                     </li>
                     {% endfor %}
@@ -436,7 +433,7 @@
                 <div class="tab-pane fade" id="latest">
                   <ul class="aa-product-catg aa-latest-slider">
                     <!-- start single product item -->
-                    {% for post in las %}
+                    <!-- {% for post in mens %}
                         <li>
                           <figure>
                             <a class="aa-product-img" href="#"><img src="{{ post.thumbnail.url }}" alt="polo shirt img"></a>
@@ -447,17 +444,15 @@
                             </figcaption>
                           </figure>                         
                           <div class="aa-product-hvr-content">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
-                            <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                          
+                            <a href="{% url 'wishlist' post.id  %}" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                    
                           </div>
-                          <!-- product badge -->
-                          <span class="aa-badge aa-sale" href="#">{{ post.badge }}</span>
+                          product badge -->
+                          <!-- <span class="aa-badge aa-sale" href="#">{{ post.badge }}</span>
                         </li>
-                     {% endfor %} 
+                     {% endfor %}  -->
                       </ul>                                                            
                       <!-- / latest product category -->              
-              </div>
+              </div> -->
             </div>
           </div> 
         </div>

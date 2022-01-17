@@ -1,2 +1,4 @@
-Django==3.2.4
+Django==3.2.7
 django_tinymce==3.3.0
+djangorestframework==3.13.1
+drf_yasg==1.20.0

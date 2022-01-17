@@ -21,7 +21,6 @@ class Author(models.Model):
 class Poster(models.Model):
     title = models.CharField(max_length=100)
     overview = models.TextField()
-    slug = models.SlugField(unique=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     content = HTMLField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
@@ -32,10 +31,10 @@ class Poster(models.Model):
         return self.title
 
 class Comment(models.Model):
+    post = models.ForeignKey(Poster,on_delete=models.CASCADE,related_name='comments')
     Name = models.CharField(max_length=100,null=True)
     email = models.EmailField(max_length=100,null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    profile_picture = models.ImageField(null=True)
     content = models.TextField()
 
 
@@ -51,7 +50,7 @@ class Product(models.Model):
     thumbnail = models.ImageField()
     title = models.CharField(max_length=100)
     price = models.IntegerField(default=0)
-    content  = models.CharField(max_length=100,default=True)
+    content  = models.CharField(max_length=100)
     badge = models.CharField(max_length=100,null=True)
     stock=models.IntegerField()
     timestamp = models.DateTimeField(auto_now_add=True)
