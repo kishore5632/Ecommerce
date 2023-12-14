@@ -261,6 +261,7 @@ def complete_remove_wishlist(request,product_id):
 
 #thes is demo
 
+#testing server 3 demo
 
 
 
