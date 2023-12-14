@@ -259,9 +259,6 @@ def complete_remove_wishlist(request,product_id):
 
 
 
-#thes is demo
+#this is demo
 
-
-
-
-
+#This is demo for testing...
