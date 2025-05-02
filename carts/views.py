@@ -262,3 +262,4 @@ def complete_remove_wishlist(request,product_id):
 #this is demo
 
 #This is demo for testing...
+#this is for demo (Edited by-Ambar Kaity)
